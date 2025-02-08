@@ -1,7 +1,14 @@
-﻿// load some sound
+﻿const audioContext = new AudioContext();
+
+// get the audio element
 const audioElement = document.querySelector("audio");
 
-// register event listeners to store key actions and keycodes inside of GLOBALS, so that they can be accessed by sprites that need them.
+// pass it into the audio context
+const track = audioContext.createMediaElementSource(audioElement);
+track.connect(audioContext.destination);
+
+
+let isAudioPlaying = true;
 
 window.addEventListener("keydown", (e) => {
     if (e.defaultPrevented) {
@@ -9,9 +16,13 @@ window.addEventListener("keydown", (e) => {
     }
 
     if (e.code === "KeyM") {
-        if (audioElement.playState === "paused")
-            audioElement.play();
-        else if (audioElement.playState === "playing")
+        if (isAudioPlaying) {
             audioElement.pause();
+            isAudioPlaying = false;
+        }
+        else {
+            audioElement.play();    
+            isAudioPlaying = true;
+        }
     }
 });
