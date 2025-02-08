@@ -8,10 +8,10 @@ window.addEventListener("keydown", (e) => {
         return; // Do nothing if event already handled
     }
 
-    if (e.code == "KeyM") {
-        if (audio.playState == "paused")
-            audio.play();
-        else if (audio.playState == "playing")
-            audio.pause();
+    if (e.code === "KeyM") {
+        if (audioElement.playState === "paused")
+            audioElement.play();
+        else if (audioElement.playState === "playing")
+            audioElement.pause();
     }
 });
